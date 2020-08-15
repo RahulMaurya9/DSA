@@ -1,0 +1,11 @@
+def bubbleSort(data):
+    for i in range(len(data)):
+        for j in range(len(data) - 1 - i):
+            if data[j] > data[j + 1]:
+                # swap(data[j], data[j+1])
+                temp = data[j]
+                data[j] = data[j + 1]
+                data[j + 1] = temp
+
+
+bubbleSort(sample)
