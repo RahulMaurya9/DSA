@@ -1,0 +1,20 @@
+def BinarySearch(data, n):
+    lower = 0
+    upper = len(data)
+
+    for i in range(len(data)):
+        mid = int((lower + upper) / 2)
+        if data[mid] == n:
+            global pos
+            pos = mid
+            return True
+        elif data[mid] < n:
+            lower = mid + 1
+        else:
+            upper = mid - 1
+
+
+if BinarySearch(sample, find):
+    print("Found at ", pos + 1)
+else:
+    print("Not Found")
