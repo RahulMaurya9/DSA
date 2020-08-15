@@ -1,0 +1,18 @@
+def jumpSearch(data, n):
+    m = int(mat.sqrt(len(data)))
+    print(m)
+    for i in range(len(data)):
+        if data[i] == n:
+            global pos
+            pos = i
+            return True
+        elif data[i] < n:
+            i = i + m
+        else:
+            continue
+
+
+if jumpSearch(sample, find):
+    print("Found at position :", pos + 1)
+else:
+    print("Not Found!")
