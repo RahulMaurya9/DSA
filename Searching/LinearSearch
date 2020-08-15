@@ -1,0 +1,13 @@
+def search(data, n):
+    for i in range(len(data)):
+        if data[i] == n:
+            global pos
+            pos = i
+            return True
+    return False
+
+
+if search(sample, n):
+    print("found at ", pos + 1)
+else:
+    print("Not found!")
