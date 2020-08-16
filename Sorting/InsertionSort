@@ -1,0 +1,11 @@
+def insertion_Sort(sample):
+    index_structure = range(1, len(sample))
+    for i in index_structure:
+        key = sample[i]
+        while sample[i - 1] > key and i > 0:
+            sample[i], sample[i - 1] = sample[i - 1], sample[i]
+            i = i - 1
+    return sample
+
+
+insertion_Sort(sample)
