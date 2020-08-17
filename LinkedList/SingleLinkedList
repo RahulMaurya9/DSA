@@ -1,0 +1,181 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class LinkList:        #Creating class for LinkList
+    def __init__(self):
+        self.head = None
+
+    def display(self):            #Display the data
+        curr_node = self.head
+        while curr_node:
+            print(curr_node.data, end=' ')
+            curr_node = curr_node.next
+
+    def appends(self, data):          #append your Node 
+        new_node = Node(data)
+        if self.head is None:
+            self.head = new_node
+        else:
+            temp = self.head
+            while temp.next is not None:
+                temp = temp.next
+            temp.next = new_node
+
+    def delete(self, key):          #Delete the Node
+        cur_node = self.head
+        if cur_node and cur_node.data == key:
+            self.head = cur_node.next
+            cur_node = None
+            return
+        prev = None
+        while cur_node and cur_node.data != key:
+            prev = cur_node
+            cur_node = cur_node.next
+        if cur_node is None:
+            print(f" the node you entered is wrong")
+            return
+        prev.next = cur_node.next
+        cur_node.next = None
+
+    def delte_at_pos(self, pos):          #Delte node at specific position
+        cur_node = self.head
+        if pos == 0:
+            cur_node = cur_node.next
+            cur_node = None
+            return
+        count = 1
+        prev = None
+        while cur_node and count != pos:
+            prev = cur_node
+            cur_node = cur_node.next
+            count += 1
+        if cur_node is None:
+            return
+        prev.next = cur_node.next
+        cur_node.next = None
+
+    def count_node(self):           #Count the Node in Linked list
+        count = 0
+        while self.head is not None:
+            self.head = self.head.next
+            count += 1
+        return count
+
+    def len_recursive(self, node):    #count using recursion 
+        if node is None:
+            return 0
+        return 1 + self.len_recursive(node.next)
+
+    def sum(self):                        #Sum of your data in node of linked list
+        cur_node = self.head
+        list_sum = 0
+        while cur_node is not None:
+            list_sum = list_sum + cur_node.data
+            cur_node = cur_node.next
+        return list_sum
+
+    def max_node(self):
+        cur_node = self.head
+        maxx = 0
+        while cur_node is not None:
+            if maxx < cur_node.data:
+                maxx = cur_node.data
+                cur_node = cur_node.next
+        return maxx
+
+    def rev_list(self):
+        prev = None
+        rprev = None
+        cur_node = self.head
+        while cur_node is not None:
+            rprev = prev
+            prev = cur_node
+            cur_node = cur_node.next
+            prev.next = rprev
+        self.head = prev
+
+    def search_node(self, key):
+        cur_node = self.head
+        count = 0
+        if cur_node is None:
+            print("Link LIst is empty")
+        while cur_node is not None:
+            if key == cur_node.data:
+                return count
+            count += 1
+            cur_node = cur_node.next
+        return print(f"the number you type is not present in linklist")
+
+    def better_search(self, key):
+        cur_node = self.head
+        count = 0
+        prev = None
+        if cur_node is None:
+            print("list is empty")
+        while cur_node is not None:
+            if cur_node.data == key:
+                prev.next = cur_node.next
+                cur_node.next = self.head
+                self.head = cur_node
+                return count
+            count += 1
+            prev = cur_node
+            cur_node = cur_node.next
+        return self.head
+
+    def sorted_append(self, data):
+        new_word = Node(data)
+        cur_node = self.head
+        if self.head is None:
+            self.head = new_word
+        prev = None
+        while cur_node is not None:
+            if data > cur_node.data:
+                prev = cur_node
+                cur_node = cur_node.next
+        new_word.next = prev.next
+        prev.next = new_word
+
+    #     check whether the link is sorted or not
+    def find_sorted(self):
+        cur_node = self.head
+        prev = 0
+        if cur_node is None:
+            return print("False")
+        while cur_node is not None:
+            if (cur_node.data < prev):
+                return print("this is false")
+            prev = cur_node.data
+            cur_node = cur_node.next
+        return print("this is a true")
+
+    # REMOVE DUPLICATE NODE IN LIST
+    def remove_dup(self):
+        cur_node = self.head
+        next_node = cur_node.next
+        if self.head is None:
+            return 0
+        while next_node is not None:
+            if next_node.data != cur_node.data:
+                cur_node = next_node
+                next_node = next_node.next
+            cur_node.next = next_node.next
+            next_node = cur_node.next
+def search(head1,head2):
+    temp=None
+    if head1 is None:
+        return head2
+    if head2 is None:
+        return head1
+    if head1.data<head2.data:
+        temp=head1
+        temp.next=rahulram(head1.next,head2)
+    else:
+        temp=head2
+        temp.next=search(head1,head2.next)
+    return temp
+
+llist = LinkList()
