@@ -70,7 +70,43 @@ class DoubleLinkedList:
                 cur.prev = new_node
             cur = cur.next
 
-
+    def delete_node(self, key):
+        cur = self.head
+        if cur is None:
+            print("Node not exist")
+            return
+        while cur:
+            if cur == self.head and key == cur.Data:
+                # Case 1 : delete head node
+                if not cur.next:
+                    cur = None
+                    self.head = None
+                    return
+                #     case 2 : delete head node and make second node as a head
+                else:
+                    nxt = cur.next
+                    cur.next = None
+                    nxt.prev = None
+                    cur = None
+                    self.head = nxt
+                    return
+            elif cur.Data == key:
+                if cur.next:
+                    nxt = cur.next
+                    prev = cur.prev
+                    prev.next = nxt
+                    nxt.prev = prev
+                    cur.next = None
+                    cur.prev = None
+                    cur = None
+                    return
+                else:
+                    prev = cur.prev
+                    prev.next = None
+                    cur.prev = None
+                    cur = None
+                    return
+            cur = cur.next
 
     def print(self):
         cur = self.head
@@ -80,5 +116,5 @@ class DoubleLinkedList:
 
 
 double = DoubleLinkedList()
-de(6, 1)
-double.print()
+
+
