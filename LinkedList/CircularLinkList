@@ -1,0 +1,46 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class circularLinkList:
+    def __init__(self):
+        self.head = None
+
+    def preAppend(self,data):
+        cur = self.head
+        new_node = Node(data)
+        new_node.next = self.head
+        if not cur:
+            new_node.next = new_node
+        else:
+            while cur.next != self.head:
+                cur  = cur.next
+            cur.next = new_node
+        self.head = new_node
+
+    def appends(self, data):
+        new_node = Node(data)
+        cur = self.head
+        if not cur:
+            self.head = new_node
+            self.head.next = self.head
+        else:
+            while cur.next != self.head:
+                cur = cur.next
+            cur.next = new_node
+            new_node.next = self.head
+
+    def print_node(self):
+        cur = self.head
+        while cur:
+            print(cur.data)
+            cur = cur.next
+            if cur == self.head:
+                break
+            
+
+
+
+circular = circularLinkList()
