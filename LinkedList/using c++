@@ -1,0 +1,196 @@
+#include <iostream>
+
+using namespace std;
+
+class Node
+{
+public:
+    int data;
+    Node *next;
+};
+
+class LinkedList
+{
+private:
+    Node *head, *tail;
+
+public:
+    void add_element(int a);
+    int display(void);
+    int count_node(void);
+    int sum_node(void);
+    int return_max(void); //TODO : TO RETURN MAX DATA OF CODE
+    int data_find(int a); // ! This will find data in the linked list
+    LinkedList()
+    {
+        head = nullptr;
+        tail = nullptr;
+    }
+    int set_node(int a, int b);
+};
+
+void LinkedList ::add_element(int a)
+{
+    Node *temp = new Node();
+    temp->data = a;
+    temp->next = nullptr;
+    if (head == nullptr)
+    {
+        head = temp;
+        tail = temp;
+    }
+    else
+    {
+        tail->next = temp;
+        tail = tail->next;
+    }
+};
+
+int LinkedList ::display(void)
+{
+    if (head == nullptr)
+    {
+        cout << "Data is not present";
+        return 0;
+    }
+    Node *start = head;
+    while (start != nullptr)
+    {
+        cout << start->data << " ";
+        start = start->next;
+    }
+    return 0;
+}
+
+int LinkedList ::count_node(void)
+{
+    int count = 0;
+    Node *start = head;
+    while (start != nullptr)
+    {
+        count += 1;
+        start = start->next;
+    }
+    return count;
+}
+
+int LinkedList ::sum_node()
+{
+    int sum = 0;
+    Node *start = head;
+    if (start == nullptr)
+    {
+        return 0;
+    }
+    while (start)
+    {
+        sum += start->data;
+        start = start->next;
+    }
+    return sum;
+}
+
+int LinkedList ::return_max()
+{
+    int max = INT32_MIN;
+    Node *start = head;
+    if (start == nullptr)
+    {
+        return 0;
+    }
+    else
+    {
+        while (start != nullptr)
+        {
+            if (start->data > max)
+            {
+                max = start->data;
+            }
+            start = start->next;
+        }
+    }
+    return max;
+}
+// Find the node using the given reference
+
+int LinkedList ::data_find(int a)
+{
+    Node *start = head;
+    if (start == nullptr)
+    {
+        cout << "There is no data so can't find the value you are looking for";
+        return 0;
+    }
+    while (start != nullptr)
+    {
+        if (start->data == a)
+        {
+            cout << "The data is found " << endl;
+            return 0;
+        }
+        start = start->next;
+    }
+    cout << "The given number is not present in this list of data";
+    return 0;
+}
+
+int LinkedList ::set_node(int pos, int val)
+{
+    Node *newNode = new Node();
+    newNode->data = val;
+    newNode->next = nullptr;
+    Node *start = head;
+    Node *prev;
+    int count = 1;
+    int num = count_node();
+    if(num<pos){
+        cout<<"beyond limit can't add val "<<val<<" in the postion of "<<pos<<"."<<endl;
+        return 0;
+    }
+    if (start == nullptr)
+    {
+        head = newNode;
+        // tail = newNode;
+    }
+    else
+    {
+        while (pos != count)
+        {
+            prev = start;
+            start = start->next;
+            count = count + 1;
+        }
+        prev->next = newNode;
+        newNode->next = start;
+    }
+    return 0;
+}
+
+// TODO: MAIN CODE START FROM HERE SO TAKE IT SERIOUSLY
+
+int main()
+{
+    LinkedList li;
+    li.add_element(1);
+    li.add_element(2);
+    li.add_element(3);
+    li.add_element(4);
+    li.add_element(5);
+    li.add_element(7);
+    li.add_element(9);
+    li.add_element(11);
+    li.display();
+    // cout<<endl<<"The total nodes are : " <<li.count_node();
+    // cout<<endl<<"The total sum of all nodes become : "<<li.sum_node();
+    // cout<<endl<<"The maximum number of these node is : "<<li.return_max();
+    // cout<<endl;
+    // li.data_find(33);
+    cout<<endl;
+    // li.set_node(3, 45);
+    // li.set_node(3, 123);
+    // li.set_node(6,345);
+    // li.set_node(45,99999);
+    // li.display();
+
+    return 0;
+}
