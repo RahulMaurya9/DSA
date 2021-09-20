@@ -1,0 +1,13 @@
+Question : Print All Palindromic Substrings
+
+
+Sample Input
+abcc
+
+
+Sample Output
+a
+b
+c
+cc
+c
